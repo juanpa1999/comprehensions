@@ -6,7 +6,8 @@ def run():
     words = words.split(sep=' ')
     words = words[::-1]
     print(words)
-
+    for i in words:
+        print(i)
 
 if __name__ == '__main__':
     run()
