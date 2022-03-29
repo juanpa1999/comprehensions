@@ -51,7 +51,7 @@ DATA = [
     {
         'name': 'Juan',
         'age': 17,
-        'organization': '',
+        'organization': 'Platzi',
         'position': 'Student',
         'language': 'go',
     },
@@ -72,15 +72,18 @@ DATA = [
 ]
 
 def run():
-    name = [i["name"] for i in DATA]
-    for i in name:
-        pass
-    age = [i["age"] for i in DATA]
-    for i in age:
-        pass
-    name_age = name + age
-    print(name_age)    
-
+    all_python_devs = list(filter(lambda worker: worker['language'] == 'python', DATA))
+    names_all_python_devs = list(map(lambda worker: worker['name'],all_python_devs ))
+    all_platzy_workers = list(filter(lambda worker: worker['organization'] == 'Platzi', DATA))
+    all_platzy_workers_names = list(map(lambda worker: worker['name'],all_platzy_workers))
+    workers_adults = [worker['name'] for worker in DATA if worker ['age'] > 18]
+    
+    # un ejemplo de como agregar dicionarios detron de una list comprehension
+    old_people = [worker | {"old": worker["age"] > 50} for worker in DATA]
+    old_people_names = [worker['name'] for worker in old_people if worker['old'] == True]
+    
+    for worker in old_people_names:
+        print(worker)
 
 if __name__ == '__main__':
     run()
